@@ -1,0 +1,43 @@
+#app{
+  .ivu-table-wrapper{
+    border:none;
+  }
+  .ivu-table{
+    color:#333;
+  }
+  .ivu-table:before,
+  .ivu-table:after{
+    display: none;
+  }
+  .ivu-table th{
+    background-color: $light-blue;
+    border-bottom:none;
+    color: $w;
+  }
+  .ivu-table td{
+    border-bottom: none;
+  }
+  .ivu-table-stripe .ivu-table-body tr:nth-child(2n) td,
+  .ivu-table-stripe .ivu-table-fixed-body tr:nth-child(2n) td{
+    background-color: $gray;
+  }
+
+  .tree-level-1 td{
+    background-color: $w;
+  }
+  .tree-level-2 td{
+    background-color: #f8f8f9;
+  }
+  .tree-level-3 td{
+    background-color: #e9eaec;
+  }
+  .tree-level-4 td{
+    background-color: #dddee1;
+  }
+  .tree-level-5 td{
+    background-color: #bbbec4;
+  }
+
+
+
+}

@@ -1,0 +1,19 @@
+#app{
+  .layout-menu-left,
+  .ivu-menu.ivu-menu-isr{
+    background-color: $gray;
+  }
+  .ivu-menu{
+    color: #333;
+  }
+  .ivu-menu-isr > div > .ivu-menu-submenu{
+    border-bottom:1px solid #dfdfdf;
+  }
+  .ivu-menu-submenu.ivu-menu-opened > .ivu-menu-submenu-title{
+    color: $light-blue;
+  }
+  .ivu-menu-isr.ivu-menu-light.ivu-menu-vertical .ivu-menu-item-active:not(.ivu-menu-submenu){
+    color: $light-blue;
+    border-right: none;
+  }
+}

@@ -1,0 +1,102 @@
+/* reset样式 */
+
+.spin-outer {
+    position: relative;
+    height: 100%;
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+    margin: 0 auto;
+}
+
+// 工程师信息列表-start
+.ivu-table-info-column-engineerName {
+    color: #019dd9;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+// 工程师信息列表-end
+// 工程师信息详情-start
+.ivu-title-name {
+    flex: 1;
+    border-bottom: 1px solid #dddee1;
+    line-height: 32px;
+    color: $light-blue;
+}
+
+.ivu-information-box {
+    background-color: #f3f3f3;
+    box-shadow: 1px 1px 5px #d4d4d4;
+}
+
+.ivu-information-box-img {
+    vertical-align: top;
+    width: 145px;
+    height: 182px;
+    padding: 16px 10px;
+    background-color: $w;
+    box-shadow: 1px 1px 5px #d4d4d4;
+}
+
+.ivu-information-box-text ul li {
+    line-height: 36px;
+}
+
+.ivu-information-box-text ul li:first-child {
+    padding-top: 0;
+}
+
+.ivu-information-box-text ul.ta-r li {
+    color: #666;
+}
+
+.ivu-information-box-text ul.ta-l li {
+    color: #333;
+}
+
+.ivu-information-box-text ul li.color-ligth-blue {
+    color: $light-blue;
+}
+
+.ivu-tabs-text .w-sty1 {
+    line-height: 22px;
+    border-bottom: 1px dashed #cdcdcd;
+    padding: 12px 0;
+}
+
+.ivu-tabs-text .w-sty1 .w-sty1-color1 {
+    border-left: 2px solid #005178;
+    padding-left: 8px;
+    color: #666;
+}
+
+.ivu-tabs-text .w-sty1 .w-sty1-color2 {
+    color: #333;
+}
+
+.ivu-tabs-text .w-sty2 p {
+    border-left: 2px solid #005178;
+    padding-left: 8px;
+    color: #666;
+}
+
+.ivu-tabs-text .flex img {
+    width: 200px;
+    height: 120px;
+}
+
+// 工程师信息详情-end
+// 工程师编辑-start
+.postal-address {
+    background-color: #f0f0f0;
+    height: 40px;
+    padding-left: 20px;
+    line-height: 40px;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 16px;
+}

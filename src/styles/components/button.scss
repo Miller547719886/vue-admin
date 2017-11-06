@@ -1,0 +1,23 @@
+#app{
+  .ivu-btn-text,
+  .ivu-btn-text:hover{
+    color: $light-blue;
+  }
+
+  .ivu-btn.ivu-btn-default {
+    padding: 6px 30px;
+    color: #333;
+    border: 1px solid #efefef;
+    background-color: $w;
+    box-shadow: 0 0 10px rgba(212,212,212,.68) inset;
+  }
+}
+.v-transfer-dom{
+  .ivu-btn.ivu-btn-default {
+    padding: 6px 30px;
+    color: #333;
+    border: 1px solid #efefef;
+    background-color: $w;
+    box-shadow: 0 0 10px rgba(212,212,212,.68) inset;
+  }
+}

@@ -1,0 +1,72 @@
+$w: #fff;
+$b: #000;
+$r: #f54860;
+$blue: #019dd9;
+$org: #ff8a00;
+$tag-blue: #69c6ea;
+$border-grey: #e6e6e6;
+$cel-selected-blue: #ebf9ff;
+$dark-blue: #004464;
+$light-blue: #005178;
+$gray: #ededed;
+@mixin gradient($from:from, $to:to, $angle: 180) {
+    background-repeat: repeat-x;
+    background-image: -webkit-linear-gradient($angle + deg, $from, $to);
+    background-image: -o-linear-gradient($angle + deg, $from, $to);
+    background-image: linear-gradient($angle + deg, $from, $to);
+}
+
+@mixin box-shadow-top() {
+    box-shadow: 0px -2px 5px #cdcdcd;
+    -webkit-box-shadow: 0px -2px 5px #cdcdcd;
+    -o-box-shadow: 0px -2px 5px #cdcdcd;
+    -moz-box-shadow: 0px -2px 5px #cdcdcd;
+}
+
+.color-disable {
+    color: #cccccc;
+}
+
+.color-red {
+    color: $r;
+}
+
+.color-blue {
+    color: $blue;
+}
+
+.color-org {
+    color: $org;
+}
+
+.color-white,
+.c-white {
+    color: $w;
+}
+
+.color-grey {
+    color: #999;
+}
+
+.ligth-blue,
+.color-ligth-blue,
+.color-light-blue,
+{
+    color: $light-blue;
+}
+
+.bg-blue {
+    background-color: $blue!important;
+}
+
+.bg-dark-blue {
+    background-color: $dark-blue;
+}
+
+.bg-ligth-blue {
+    background-color: $light-blue;
+}
+
+.bg-gary {
+    background-color: $gray;
+}

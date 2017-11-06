@@ -1,0 +1,46 @@
+// // 移动端字体自适应屏幕
+// @mixin font($fontSize: 13) {
+//   font-size: $fontSize + px!important;
+//   @media screen and (min-width: 375px) and (max-width:400px) {
+//     $font375: $fontSize + 1;
+//     font-size: $font375 + px!important;
+//   }
+//   @media screen and (min-width: 401px) {
+//     $font400: $fontSize + 2;
+//     font-size: $font400 + px!important;
+//   }
+// }
+@mixin font($fontSize: 14) {
+  font-size: $fontSize + px!important;
+}
+
+
+/* 字体大小 */
+
+.f-12 {
+  @include font(12);
+}
+
+.f-13 {
+  @include font(13);
+}
+
+.f-14 {
+  @include font(14);
+}
+
+.f-15 {
+  @include font(15);
+}
+
+.f-16 {
+  @include font(16);
+}
+
+.f-17 {
+  @include font(17);
+}
+
+.f-18 {
+  @include font(18);
+}

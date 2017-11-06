@@ -1,0 +1,40 @@
+#app{
+  .ivu-page {
+      padding-bottom: 130px;
+  }
+  .ivu-page-item-active{
+    background-color: $light-blue;
+    border-color: $light-blue;
+  }
+  .ivu-page-item:hover,
+  .ivu-page-next:hover, .ivu-page-prev:hover,
+  .ivu-select-selection:hover,
+  .ivu-select-visible .ivu-select-selection,
+  .ivu-page-options-elevator input:hover,
+  .ivu-page-options-elevator input:focus{
+    border-color: $light-blue;
+  }
+  .ivu-page-disabled,
+  .ivu-page-disabled:hover {
+    border-color: #dddee1;
+  }
+  .ivu-select-visible .ivu-select-selection,
+  .ivu-page-options-elevator input:focus{
+    box-shadow: none;
+  }
+  .ivu-page-item:hover a,
+  .ivu-page-item-jump-next a,
+  .ivu-page-next:hover a, .ivu-page-prev:hover a{
+    color: $light-blue;
+  }
+  .ivu-page-disabled a,
+  .ivu-page-disabled:hover a{
+    color:#ccc;
+  }
+  .ivu-page-item-active:hover a{
+    color: $w;
+  }
+  .ivu-select-item-selected, .ivu-select-item-selected:hover{
+    background-color: $light-blue;
+  }
+}

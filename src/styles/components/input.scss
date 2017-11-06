@@ -1,0 +1,34 @@
+.ivu-form-item-content {
+  /* 图标 */
+  .ivu-input-group-prepend {
+    padding: 10px;
+    background-color: #f6f6f6;
+    i {
+      font-size: 18px;
+      font-weight: bold;
+      color: #005178;
+    }
+  }
+  /* 输入框 */
+  .ivu-input {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    height: auto;
+  }
+}
+#app{
+  .ivu-input-default .ivu-input{
+    color: #333;
+    border: 1px solid #efefef;
+    background-color: $w;
+    box-shadow: 0 0 6px rgba(212,212,212,.68) inset;
+  }
+}
+.v-transfer-dom{
+  .ivu-input-default .ivu-input{
+    color: #333;
+    border: 1px solid #efefef;
+    background-color: $w;
+    box-shadow: 0 0 6px rgba(212,212,212,.68) inset;
+  }
+}

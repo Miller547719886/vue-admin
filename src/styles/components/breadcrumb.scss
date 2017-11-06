@@ -1,0 +1,9 @@
+#app{
+  .ivu-breadcrumb,
+  .ivu-breadcrumb-item-separator{
+    color: $light-blue;
+  }
+  .ivu-breadcrumb>span:last-child{
+    color: $dark-blue;
+  }
+}

@@ -1,0 +1,89 @@
+.ta-c {
+  text-align: center!important;
+}
+
+.ta-l {
+  text-align: left!important;
+}
+
+.ta-r {
+  text-align: right!important;
+}
+
+.d-b {
+  display: block!important;
+}
+
+.d-ib {
+  display: inline-block!important;
+}
+
+.d-i {
+  display: inline!important;
+}
+
+.f-l {
+  float: left!important;
+}
+
+.f-r {
+  float: right!important;
+}
+
+.hide,
+.d-n {
+  display: none!important;
+}
+
+.show,
+.d-b {
+  display: block!important;
+}
+
+.d-ib {
+  display: inline-block!important;
+}
+
+.d-i {
+  display: inline!important;
+}
+
+.hidden {
+  visibility: hidden!important;
+}
+
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: " ";
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+.p-fixed-b {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+
+.w100 {
+  width: 100%!important;
+}
+
+.w50 {
+  margin: 0 auto;
+  width: 50%!important;
+}
+
+.center-h {
+  margin: 0 auto;
+}
+
+@mixin backImg ($img: #fff) {
+  background-image: url($img);
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  background-position: center;
+}

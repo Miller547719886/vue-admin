@@ -1,0 +1,30 @@
+#app{
+  .ivu-tabs{
+    color:#333;
+  }
+  .ivu-tabs-ink-bar{
+    background-color: $light-blue;
+  }
+  .ivu-tabs-nav .ivu-tabs-tab-active,
+  .ivu-tabs-nav .ivu-tabs-tab:hover,
+  .ivu-tabs-nav .ivu-tabs-tab:active{
+    color: $light-blue;
+  }
+
+  .ivu-tabs.ivu-tabs-card>.ivu-tabs-bar .ivu-tabs-nav-container{
+    height: 42px;
+  }
+  .ivu-tabs.ivu-tabs-card>.ivu-tabs-bar .ivu-tabs-tab{
+    margin-right: 0;
+    border:none;
+    background-color: #e6e6e6;
+    border-radius: 14px 14px 0 0;
+    height: 42px;
+    padding: 10px 32px 9px;
+  }
+  .ivu-tabs.ivu-tabs-card>.ivu-tabs-bar .ivu-tabs-tab-active{
+    background-color: $w;
+    border:1px solid #dfdfdf;
+    border-bottom:none;
+  }
+}
