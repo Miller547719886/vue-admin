@@ -12,6 +12,7 @@ export default {
   logout() {
     common.rmStorage($CONST.USER_KEY)
     common.rmStorage($CONST.TOKEN_KEY)
+    configUtils.clearColumnsKey()
   },
   getToken() {
     return common.getStorage($CONST.TOKEN_KEY)

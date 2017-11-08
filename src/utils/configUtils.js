@@ -6,17 +6,19 @@
  */
 export default {
     getColumnsKey(tableId) {
-        const USER = common.getStorage($CONST.CONFIG_COLUMNS_KEY)
-        if (USER == null) {
-            return 0 // 没有本地存储
-        } else if (USER[tableId] == null) {
-            return 1 // 有本地存储但没有当前表格配置
+        const config = common.getStorage($CONST.CONFIG_COLUMNS_KEY)
+        if (tableId != undefined) {
+          return (config ? config[tableId] : undefined) // 获取对应id的配置
         } else {
-            return USER[tableId] // 有本地存储且有当前表格配置
+          return config // 获取所有配置
         }
     },
     setColumnsKey(columnsConfigObj) {
         common.setStorage($CONST.CONFIG_COLUMNS_KEY, columnsConfigObj)
+        console.log(common.getStorage($CONST.CONFIG_COLUMNS_KEY), 'saved config')
+    },
+    clearColumnsKey () {
+      common.rmStorage($CONST.CONFIG_COLUMNS_KEY)
     }
     // logout() {
     //     common.rmStorage($CONST.CONFIG_COLUMNS_KEY)

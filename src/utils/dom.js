@@ -84,6 +84,30 @@ function after(newElement, targetElement) {
     }
 }
 
+/* next辅助函数（不导出） */
+function nextElementSibling(el) {
+  do { el = el.nextSibling; } while (el && el.nodeType !== 1);
+  return el;
+}
+
+function next(el) {
+  return el.nextElementSibling || nextElementSibling(el);
+}
+
+/* prev辅助函数（不导出） */
+function previousElementSibling(el) {
+  do { el = el.previousSibling; } while (el && el.nodeType !== 1);
+  return el;
+}
+
+function prev(el) {
+  return el.previousElementSibling || previousElementSibling(el);
+}
+
+function text(el) {
+  return common.trim(el.textContent || el.innerText)
+}
+
 /**
  * 触发事件(暂时只支持鼠标事件)
  * @param eventName
@@ -93,6 +117,10 @@ function trigger(eventName, el) {
     let e = document.createEvent('MouseEvent')
     e.initEvent(eventName, false, false)
     el.dispatchEvent(e)
+}
+
+function parent(el) {
+  return el.parentNode
 }
 
 export default {
@@ -106,5 +134,9 @@ export default {
     hasClass,
     before,
     after,
-    trigger
+    trigger,
+    next,
+    prev,
+    text,
+    parent
 }

@@ -9,8 +9,8 @@ export default () => {
     window.configUtils = configUtils
     window.$BASE = {
         // URL: 'http://39.108.37.119:443',
-        // URL: 'https://isr-dev.kydls.cn',
-        URL: 'http://192.168.10.119:443',
+        URL: 'https://isr-dev.kydls.cn',
+        // URL: 'http://192.168.10.119:443',
         EXCLUDE_NOTICE_URL: ['/user/login']
     }
     window.$CONST = {

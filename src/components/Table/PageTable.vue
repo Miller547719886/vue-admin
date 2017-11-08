@@ -80,7 +80,7 @@
       columns: {
         type: Array,
         require: true,
-        default: []
+        default: () => []
       },
       showSizer: {
         type: Boolean,

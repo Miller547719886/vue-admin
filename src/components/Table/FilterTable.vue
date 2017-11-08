@@ -1,13 +1,20 @@
 <template>
   <!-- 不分页筛选表格 -->
   <div class="filter-table">
-    <Modal v-show="isTransferMode"
-      v-model="modalTransfer.show"
-      :title="modalTransfer.title"
-      width="710px"
-      @on-ok="saveColumnsConfig">
-      <CTransfer :data="transferData" :target-keys="targetKeys" :titles="titles"></CTransfer>
-    </Modal>
+    <div v-if="modalTransfer.exist">
+      <Modal v-show="isTransferMode"
+        v-model="modalTransfer.show"
+        :title="modalTransfer.title"
+        width="710px"
+        @on-ok="saveColumnsConfig">
+        <CTransfer ref="CTransfer"
+          :disabledSelections="disabledSelections"
+          :data="transferData"
+          v-model="targetKeys"
+          :titles="titles"
+          @on-right-data-change="handleRightDataChange"></CTransfer>
+      </Modal>
+    </div>
     <div class="clearfix">
       <Checkbox-group ref="checkList" class="mt-10 f-l"
         v-show="isCheckMode"
@@ -28,6 +35,9 @@
           :label="item" :key="item"></Checkbox>
       </Checkbox-group>
       <div class="topButton">
+        <button class="but_c" @click="clearStorage">
+          <Icon type="ios-upload-outline" size="18"></Icon>清除缓存
+        </button>
         <button class="but_c" @click="showModalTransfer" v-if="isTransferMode">
           <Icon type="compose" size="18"></Icon> 自定义列表显示内容
         </button>
@@ -70,23 +80,26 @@
         size: 10,
         page: 1,
         total: 0,
-        disableSelection: ['多选', '操作'], // 根据type判断是否禁用
+        disabledSelections: ['多选', '操作', 'selection', 'action'], // 根据type判断是否禁用
         defaultKeys: ['page', 'size'],
         titles: ['已过滤列', '已选择列'],
         modalTransfer: {
           show: false,
           title: '自定义列表',
+          exist: false
         },
         transferRightList: [],
         targetKeys: [],
-        transferData: []
+        transferData: [],
+        keysToSave: [],
+        configColumnsKey: null
       }
     },
     props: {
       columns: {
         type: Array,
         require: true,
-        default: []
+        default: () => []
       },
       mode: { // 计算顺序：父组件中绑定mode->PageTable中默认mode(若不引用PageTable则忽略此项)->当前默认mode
         type: String,
@@ -112,6 +125,9 @@
       this.fillTableColumns()
     },
     methods: {
+      clearStorage () {
+        configUtils.clearColumnsKey()
+      },
       /**
        * 不分页表格加载
        * @param url 请求url ``
@@ -158,7 +174,7 @@
         }
       },
       checkDisabled (item) {
-        if (this.disableSelection.includes(item)) {
+        if (this.disabledSelections.includes(item)) {
           return true
         }
       },
@@ -201,7 +217,26 @@
       },
       /* 填充表格结构 */
       fillTableColumns () {
-        this.filteredColumns = this.getTable2Columns()
+        this.updateConfigColumnsKey() // 更新本地存储key
+        if (Array.isArray(this.configColumnsKey)) { // 本地存储有对应key
+          // 根据key设置columns
+          let filteredColumns = []
+          this.configColumnsKey.map((key, index, array) => {
+            let _item = this.columns.find((item, index, array) => {
+              return (item.key || item.type) === key
+            })
+            filteredColumns.push(_item)
+          })
+          this.filteredColumns = filteredColumns
+        } else { // 本地存储无对应key
+          this.filteredColumns = this.getTable2Columns()
+        }
+        console.log(this.filteredColumns, '12121')
+        this.$refs['table'].$forceUpdate()
+      },
+      updateConfigColumnsKey () {
+        this.configColumnsKey = configUtils.getColumnsKey(this.id)
+        console.log(this.configColumnsKey, 'updatekey')
       },
       toggleFav (index) {
         this.tableData2[index].fav = this.filteredData[index].fav === 0 ? 1 : 0;
@@ -249,35 +284,46 @@
         this.$refs['check' + index][0].$forceUpdate()
       },
       isDisabled (n) {
-        return this.disableSelection.includes(n)
+        return this.disabledSelections.includes(n)
       },
+      /* 显示穿梭框 */
       showModalTransfer () {
-        this.getFullColumns()
-        this.getTargetKey()
-        this.modalTransfer.show = true
+        //rebuild dom
+        let _this = this
+        // this.$set(this.modalTransfer, 'exist', false)
+        // this.$nextTick(() => {
+          this.$set(this.modalTransfer, 'exist', true)
+          this.$nextTick(() => {
+            this.$set(this.modalTransfer, 'show', true)
+          }, 0)
+        // })
       },
+      /* 保存配置 */
       saveColumnsConfig () {
-        let _columns = []
-        this.targetKeys.map((item, index, array) => {
-          _columns.push(() => {
-            return this.columns.find((_item, _index, _array)=> {
-              (_item.key || _item.type) === item
-            })
-          })
-        })
-        console.log(_columns, 'xx')
+        this.$refs['CTransfer'].emit() // 子给父传orderedRightData
+        this.setTargetKey()
       },
+      /* 获取所有的columns */
       getFullColumns () {
-        this.transferData = this.changeColumns2Transfer(this.columns)
+        this.transferData = this.changeColumns2Transfer(this.columns) // 所有columns
       },
+      /* 从本地或columns获取targetkey */
       getTargetKey () {
-        if (configUtils.getColumnsKey(this.id)) {
-          this.targetKeys
+        if (this.configColumnsKey) {
+          this.targetKeys = this.configColumnsKey
         } else {
-          this.targetKeys = this.changeColumns2Transfer(this.columns).map((item, index) => {
+          this.targetKeys = this.changeColumns2Transfer(this.filteredColumns).map((item, index) => {
             return item.key
           })
         }
+        console.log(this.targetKeys, 'tsr')
+      },
+      /* 将keys保存到本地存储 */
+      setTargetKey () {
+        let config = configUtils.getColumnsKey() || {}
+        config[this.id] = this.keysToSave
+        configUtils.setColumnsKey(config)
+        this.fillTableColumns()
       },
       /**
        * @param columns
@@ -285,16 +331,37 @@
        */
       changeColumns2Transfer (data) {
         let _this = this
-        let ds= this.disableSelection
+        let ds= this.disabledSelections
         return data.map((item, index) => {
           let _item
           _item = {
             key: _this.formatColumnsItemKey(item),
-            label: _this.formatColumnsItemLabel(item),
-            disabled: ds.includes(item.title) ||  item.type === 'selection'
+            label: _this.formatColumnsItemLabel(item) + _this.formatColumnsItemKey(item),
+            disabled: /* ds.includes(item.key) ||  ds.includes(item.type) */false
           }
           return _item
         })
+      },
+      /* 保存keysToSave */
+      handleRightDataChange (data) {
+        let keysToSave = []
+        data.map((item, index, array) => {
+          keysToSave.push(item.key)
+        })
+        this.keysToSave = keysToSave
+        console.log(keysToSave, 'keysTo')
+      },
+      /* 根据orderedRightData确定filteredColumns */
+      changeTransfer2Columns (data) {
+        let ds= this.disabledSelections
+        let orderedColumns = []
+        data.map((item, index, array) => {
+          let column = this.columns.find((_item, index, array) => {
+            return (_item.key || _item.type) === item.key
+          })
+          orderedColumns.push(column)
+        })
+        this.filteredColumns = orderedColumns // 被筛选的的columns
       },
       exportData (event, type = 1) {
         // if (type === 1) {
@@ -348,7 +415,20 @@
           this.triggerClick(oldV) // 模拟触发点击（最后一个被取消的勾选恢复勾选状态）
         }
         /* 更改表格列配置 */
-        this.filteredColumns = this.getTable2Columns()
+        if (this.isCheckMode) { // 在check模式下修改filteredColumns
+          this.filteredColumns = this.getTable2Columns()
+        }
+      },
+      'modalTransfer.show' (v) {
+        if (v) {
+          this.getFullColumns()
+          this.getTargetKey()
+        } else {
+          this.$refs['CTransfer'].reset()
+          this.$nextTick(() => {
+            this.$set(this.modalTransfer, 'exist', false)
+          })
+        }
       }
     }
   }
