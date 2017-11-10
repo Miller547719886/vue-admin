@@ -36,7 +36,7 @@
       </Checkbox-group>
       <div class="topButton">
         <button class="but_c" @click="clearStorage">
-          <Icon type="ios-upload-outline" size="18"></Icon>清除缓存
+          <Icon type="ios-upload-outline" size="18"></Icon>恢复默认配置
         </button>
         <button class="but_c" @click="showModalTransfer" v-if="isTransferMode">
           <Icon type="compose" size="18"></Icon> 自定义列表显示内容
@@ -123,6 +123,7 @@
     },
     mounted () {
       this.fillTableColumns()
+      console.log(_.chunk(['a', 'b', 'c', 'd'], 2))
     },
     methods: {
       clearStorage () {
@@ -409,7 +410,7 @@
       /* 监听checkbox变化 */
       tableColumnsChecked (newV, oldV) {
         /* 如果不存在禁用勾选项之外的任何勾选项 */
-        if (!this.$r.reject(this.isDisabled)(newV).length) {
+        if (!R.reject(this.isDisabled)(newV).length) {
           this.tableColumnsChecked = oldV
           this.$Message.warning('请至少保留一条有效列内容！')
           this.triggerClick(oldV) // 模拟触发点击（最后一个被取消的勾选恢复勾选状态）

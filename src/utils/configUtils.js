@@ -1,10 +1,13 @@
 /**
  * 组件配置保存到本地
- * {
- *   table001: ['selection', 'name', 'type']
- * }
  */
 export default {
+    /**
+     * localstorage表格列配置数据结构
+     * {
+     *   table001: ['selection', 'name', 'type']
+     * }
+     */
     getColumnsKey(tableId) {
         const config = common.getStorage($CONST.CONFIG_COLUMNS_KEY)
         if (tableId != undefined) {
@@ -20,14 +23,4 @@ export default {
     clearColumnsKey () {
       common.rmStorage($CONST.CONFIG_COLUMNS_KEY)
     }
-    // logout() {
-    //     common.rmStorage($CONST.CONFIG_COLUMNS_KEY)
-    //     common.rmStorage($CONST.TOKEN_KEY)
-    // },
-    // getToken() {
-    //     return common.getStorage($CONST.TOKEN_KEY)
-    // },
-    // setToken(token) {
-    //     common.setStorage($CONST.TOKEN_KEY, token)
-    // }
 }

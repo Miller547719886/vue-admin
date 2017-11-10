@@ -65,13 +65,6 @@ export default {
             })
             break
           case 403:
-            if (data && data.message) {
-              iView.Notice.error({
-                title: '警告提示',
-                desc: `${data.message}`
-              })
-            }
-            break
           case 500:
             if (data && data.message) {
               iView.Notice.error({

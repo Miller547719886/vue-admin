@@ -14,7 +14,6 @@ import store from './store'
 import { directives } from '@/utils/directives/index' // 全局自定义指令
 import Interceptors from '@/http/axiosinterceptors'
 import TreeTable from '@/components/Table/TreeTable'
-import ramda from 'ramda'
 //加载全局变量
 CONST()
     //设置默认请求url
@@ -29,8 +28,6 @@ Vue.use(VueAxios, axios)
     /*加载iView*/
 Vue.use(iView);
 Vue.config.productionTip = false
-    /* 全局引用ramda库 */
-Vue.prototype.$r = ramda
 
 let staticMode = false // 静态页面模式
 
