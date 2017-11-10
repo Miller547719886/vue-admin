@@ -61,9 +61,10 @@
   /**
    * @prop columns 表格列配置
    * ps：
-   * 1. 父组件调用方法本组件方法不能在created中调用！（因为未挂载到dom上，检测不到ref）
-   * 2. 父组件中的回调函数要用.bind(this)方法修复this指向问题
+   * 1. 父组件调用方法本组件方法不能在created中调用！（因为未挂载到dom上，检测不到ref）。
+   * 2. 父组件中的回调函数要用.bind(this)方法修复this指向问题。
    * 3. transfer里的key定义规则：columes中存在key则为key，不存在则为type。
+   * 4. 每个table都需要用id来标记，用途是获取本地存储对应的配置对象。
    */
   import CTransfer from '@/components/Transfer/Index'
   export default {
