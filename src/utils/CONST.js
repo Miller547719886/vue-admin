@@ -2,16 +2,15 @@ import common from './common'
 import dom from './dom'
 import loginUtils from './loginUtils'
 import configUtils from './configUtils'
-import ramda from 'ramda'
+import * as ramda from 'ramda'
 import lodash from 'lodash'
-
 export default () => {
     window.common = common
     window.dom = dom
     window.loginUtils = loginUtils
     window.configUtils = configUtils
-    window.R = ramda
-    // window._ = lodash
+    window.R = ramda // ramda函数库
+    // window._ = lodash // lodash函数库
     window.$BASE = {
         // URL: 'http://39.108.37.119:443',
         URL: 'https://isr-dev.kydls.cn',

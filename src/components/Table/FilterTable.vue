@@ -327,6 +327,7 @@
         this.fillTableColumns()
       },
       /**
+       * @function 将columns数据格式转化为transfer数据格式
        * @param columns
        * @return  { key, label, disabled }
        */
@@ -338,7 +339,7 @@
           _item = {
             key: _this.formatColumnsItemKey(item),
             label: _this.formatColumnsItemLabel(item) + _this.formatColumnsItemKey(item),
-            disabled: /* ds.includes(item.key) ||  ds.includes(item.type) */false
+            disabled: ds.includes(item.key) ||  ds.includes(item.type)
           }
           return _item
         })

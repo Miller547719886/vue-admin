@@ -122,17 +122,18 @@
         return /* item.key + ':' +  */item.label;
       },
       onChange (newTargetKeys) {
-        // newTargetKeys.map((item, index, array) => {
-        //   if (this.disabledSelections.includes(item)) {
-        //     if (index !== array.length - 1) { // 不是最后一项目
-        //       if (index !== 0) {
-        //         let _item = item
-        //         array.splice(index, 1)
-        //         array.unshift(_item)
-        //       }
-        //     }
-        //   }
-        // })
+        // 按照disable normal disable排序
+        newTargetKeys.map((item, index, array) => {
+          if (this.disabledSelections.includes(item)) {
+            if (index !== array.length - 1) { // 不是最后一项目
+              if (index !== 0) {
+                let _item = item
+                array.splice(index, 1)
+                array.unshift(_item)
+              }
+            }
+          }
+        })
         this.$emit('on-target-keys-change', newTargetKeys)
       },
       getSelectedItem () {
