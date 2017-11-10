@@ -37,17 +37,12 @@ routes.map((item) => {
     }
 })
 
-routes.push(...Basic)
-routes.push(...report)
-routes.push(...Engineer)
-routes.push(...staticPage)
-routes.push(...formManage)
-
-//把通用匹配至于最后
-routes.push({
-    path: '*',
-    component: NotFound
+routes.push(...Basic, ...report, ...Engineer, ...staticPage, ...formManage, {
+  //把通用匹配至于最后
+  path: '*',
+  component: NotFound
 })
+
 export default new Router({
     // mode: 'history',
     routes

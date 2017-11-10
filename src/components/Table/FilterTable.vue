@@ -35,7 +35,7 @@
           :label="item" :key="item"></Checkbox>
       </Checkbox-group>
       <div class="topButton">
-        <button class="but_c" @click="clearStorage">
+        <button class="but_c" @click="setDefault">
           <Icon type="ios-upload-outline" size="18"></Icon>恢复默认配置
         </button>
         <button class="but_c" @click="showModalTransfer" v-if="isTransferMode">
@@ -127,8 +127,11 @@
       console.log(_.chunk(['a', 'b', 'c', 'd'], 2))
     },
     methods: {
-      clearStorage () {
+      /* 重置为默认列配置 */
+      setDefault () {
         configUtils.clearColumnsKey()
+        this.filteredColumns.length = 0
+        this.filteredColumns.push(...this.columns)
       },
       /**
        * 不分页表格加载
